@@ -1,64 +1,275 @@
 import { Separator } from "@heroui/react";
+import { ArrowRight } from "lucide-react";
 
 const Banner = () => {
-  return (
-    <div className="bg-[url('/assets/banner.png')] text-white  flex justify-between flex-col items-center  gap-5 h-150">
-      <div className="p-10 text-center flex justify-center flex-col items-center gap-3.5 flex-1">
-        <h1 className="text-7xl">
-          Discover Your <br /> Next Adventure
-        </h1>
+    return (
+        <section
+            className="
+                bg-[url('/assets/banner.png')]
+                bg-cover
+                bg-center
+                relative
+                min-h-screen
+                text-white
+            "
+        >
 
-        <p className="text-2xl">
-          Explore breathtaking destinations and create unforgettable memories
-          with our curated travel experiences.
-        </p>
+            {/* Dark Overlay */}
+            <div className="absolute inset-0 bg-black/45"></div>
 
-        <div className="flex gap-5">
-          <button className="uppercase bg-cyan-500 px-5 py-3 cursor-pointer">
-            Explore Now
-          </button>
+            {/* Content */}
+            <div
+                className="
+                    relative
+                    z-10
+                    min-h-screen
+                    flex
+                    flex-col
+                    justify-between
+                "
+            >
 
-          <button className="uppercase px-5 py-3 bg-white/50 cursor-pointer">
-            View Destination
-          </button>
-        </div>
-      </div>
+                {/* Hero Content */}
+                <div
+                    className="
+                        flex-1
+                        flex
+                        flex-col
+                        items-center
+                        justify-center
+                        text-center
+                        px-4
+                        sm:px-6
+                        lg:px-10
+                    "
+                >
 
-      <div className=" bg-white/30 flex justify-between gap-5 w-full items-center">
-        <div className="px-3">
-          <h3 className="text-sm">Location</h3>
-          <p className="text-xs">Address, City or Zip</p>
-        </div>
+                    <h1
+                        className="
+                            font-light
+                            leading-[0.95]
+                            tracking-tight
+                            text-5xl
+                            sm:text-6xl
+                            md:text-7xl
+                            lg:text-[110px]
+                            max-w-5xl
+                        "
+                    >
+                        Discover Your <br />
+                        Next Adventure
+                    </h1>
 
-         <Separator variant="tertiary" orientation="vertical" />
+                    <p
+                        className="
+                            mt-6
+                            text-sm
+                            sm:text-base
+                            md:text-lg
+                            lg:text-2xl
+                            text-gray-200
+                            max-w-3xl
+                            leading-relaxed
+                        "
+                    >
+                        Explore breathtaking destinations and create unforgettable
+                        memories with our curated travel experiences.
+                    </p>
 
-        <div>
-          <h3 className="text-sm">Date/Duration</h3>
-          <p className="text-xs">Anytime/3 Days</p>
-        </div>
+                    {/* Buttons */}
+                    <div
+                        className="
+                            mt-10
+                            flex
+                            flex-col
+                            sm:flex-row
+                            items-center
+                            gap-4
+                        "
+                    >
 
-           <Separator variant="tertiary" orientation="vertical" />
+                        <button
+                            className="
+                                bg-cyan-500
+                                hover:bg-cyan-600
+                                transition-all
+                                duration-300
+                                uppercase
+                                px-8
+                                py-4
+                                text-sm
+                                font-semibold
+                                tracking-wide
+                                flex
+                                items-center
+                                gap-3
+                                cursor-pointer
+                            "
+                        >
+                            Explore Now
+                            <ArrowRight size={18} />
+                        </button>
 
-        <div>
-          <h3 className="text-sm">Budget</h3>
-          <p className="text-xs">$0-$3000</p>
-        </div>
+                        <button
+                            className="
+                                bg-white/25
+                                hover:bg-white/35
+                                backdrop-blur-sm
+                                transition-all
+                                duration-300
+                                uppercase
+                                px-8
+                                py-4
+                                text-sm
+                                font-semibold
+                                tracking-wide
+                                cursor-pointer
+                            "
+                        >
+                            View Destination
+                        </button>
+                    </div>
+                </div>
 
-           <Separator variant="tertiary" orientation="vertical" />
+                {/* Bottom Search Bar */}
+                <div className="relative z-10 w-full">
 
-        <div>
-          <h3 className="text-sm">People</h3>
-          <p className="text-xs">5-10</p>
-        </div>
+                    <div
+                        className="
+                            bg-white/20
+                            backdrop-blur-md
+                            border-t
+                            border-white/20
+                            grid
+                            grid-cols-1
+                            sm:grid-cols-2
+                            lg:grid-cols-5
+                        "
+                    >
 
+                        {/* Location */}
+                        <div
+                            className="
+                                px-6
+                                py-5
+                                flex
+                                flex-col
+                                justify-center
+                            "
+                        >
+                            <h3 className="text-lg font-medium">
+                                Location
+                            </h3>
 
+                            <p className="text-sm text-gray-200">
+                                Address, City Or Zip
+                            </p>
+                        </div>
 
-        <div className="bg-cyan-500 py-2 px-4">
-          <h3>Search</h3>
-        </div>
-      </div>
-    </div>
-  );
+                        {/* Divider */}
+                        <div className="hidden lg:flex absolute left-[20%] top-1/2 -translate-y-1/2 h-16">
+                            <Separator
+                                orientation="vertical"
+                                className="bg-white/30"
+                            />
+                        </div>
+
+                        {/* Date */}
+                        <div
+                            className="
+                                px-6
+                                py-5
+                                flex
+                                flex-col
+                                justify-center
+                            "
+                        >
+                            <h3 className="text-lg font-medium">
+                                Date/Duration
+                            </h3>
+
+                            <p className="text-sm text-gray-200">
+                                Anytime/3 Days
+                            </p>
+                        </div>
+
+                        {/* Divider */}
+                        <div className="hidden lg:flex absolute left-[40%] top-1/2 -translate-y-1/2 h-16">
+                            <Separator
+                                orientation="vertical"
+                                className="bg-white/30"
+                            />
+                        </div>
+
+                        {/* Budget */}
+                        <div
+                            className="
+                                px-6
+                                py-5
+                                flex
+                                flex-col
+                                justify-center
+                            "
+                        >
+                            <h3 className="text-lg font-medium">
+                                Budget
+                            </h3>
+
+                            <p className="text-sm text-gray-200">
+                                $0-$3000
+                            </p>
+                        </div>
+
+                        {/* Divider */}
+                        <div className="hidden lg:flex absolute left-[60%] top-1/2 -translate-y-1/2 h-16">
+                            <Separator
+                                orientation="vertical"
+                                className="bg-white/30"
+                            />
+                        </div>
+
+                        {/* People */}
+                        <div
+                            className="
+                                px-6
+                                py-5
+                                flex
+                                flex-col
+                                justify-center
+                            "
+                        >
+                            <h3 className="text-lg font-medium">
+                                People
+                            </h3>
+
+                            <p className="text-sm text-gray-200">
+                                5-10
+                            </p>
+                        </div>
+
+                        {/* Search Button */}
+                        <button
+                            className="
+                                bg-cyan-500
+                                hover:bg-cyan-600
+                                transition-all
+                                duration-300
+                                text-xl
+                                font-semibold
+                                cursor-pointer
+                                w-full
+                                h-full
+                                min-h-[100px]
+                            "
+                        >
+                            Search
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
 };
 
 export default Banner;
