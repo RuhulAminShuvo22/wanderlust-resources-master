@@ -75,6 +75,14 @@ const Navbar = () => {
                                 My Bookings
                             </Link>
                         </li>
+                        <li>
+                            <Link
+                                href="/add-destination"
+                                className="hover:text-sky-500 transition-colors"
+                            >
+                                Add Destination
+                            </Link>
+                        </li>
 
                         <li>
                             <Link
