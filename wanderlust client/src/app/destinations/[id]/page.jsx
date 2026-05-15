@@ -5,6 +5,8 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 import { RiMapPin2Fill } from "react-icons/ri";
 import { SlCalender } from "react-icons/sl";
 import Link from "next/link";
+import { Button } from "@heroui/react";
+import { BiEdit } from "react-icons/bi";
 
 
 const DestinationDetailsPage = async({params}) => {
@@ -22,10 +24,14 @@ const DestinationDetailsPage = async({params}) => {
 
     return (
         <div className="max-w-7xl mx-auto">
-            <h2>This is Destination Details Page</h2>
-
-
-            <Image
+            <div className="flex justify-end">
+                <Button variant="outline" className={"rounded-none mt-5 mb-3 "}>
+                   <BiEdit></BiEdit> Edit
+                </Button>
+            </div>
+            
+             <Image
+                className="w-full h-100 Object-cover"
                 alt={destinationName}
                 src={imageUrl}
                 height={500}
