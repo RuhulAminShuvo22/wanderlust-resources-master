@@ -1,18 +1,33 @@
 "use client"
 import { Card } from "@heroui/react";
-import {Check} from "@gravity-ui/icons";
-import {Button, Description, FieldError, Form, Input, Label, TextField} from "@heroui/react";
+import { Check } from "@gravity-ui/icons";
+import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 
 const SignUpPage = () => {
     return (
         <div className="max-w-7xl mx-auto">
-            
+
             <div className="text-center">
-                <h1 className="text-3xl font-bold">Create Account</h1>
+                <h1 className="text-2xl font-bold">Create Account</h1>
+                <p>Start your adventure with Wanderlust</p>
             </div>
 
             <Card className="border rounded-none">
                 <Form className="flex w-96 flex-col gap-4" >
+
+                    <TextField isRequired name="name" type="text">
+                        <Label>Name</Label>
+                        <Input placeholder="Enter your name" />
+                        <FieldError />
+                    </TextField>
+
+                    <TextField name="image" type="url">
+                        <Label>Image URL</Label>
+                        <Input placeholder="Image url" />
+                        <FieldError />
+                    </TextField>
+
+
                     <TextField
                         isRequired
                         name="email"
@@ -37,12 +52,12 @@ const SignUpPage = () => {
                             if (value.length < 8) {
                                 return "Password must be at least 8 characters";
                             }
-                            if (!/[A-Z]/.test(value)) {
-                                return "Password must contain at least one uppercase letter";
-                            }
-                            if (!/[0-9]/.test(value)) {
-                                return "Password must contain at least one number";
-                            }
+                            // if (!/[A-Z]/.test(value)) {
+                            //     return "Password must contain at least one uppercase letter";
+                            // }
+                            // if (!/[0-9]/.test(value)) {
+                            //     return "Password must contain at least one number";
+                            // }
                             return null;
                         }}
                     >
@@ -51,14 +66,12 @@ const SignUpPage = () => {
                         <Description>Must be at least 8 characters with 1 uppercase and 1 number</Description>
                         <FieldError />
                     </TextField>
-                    <div className="flex gap-2">
-                        <Button type="submit">
-                            <Check />
-                            Submit
+                    <div className="flex justify-center gap-2">
+                        <Button type="submit" className={"rounded-none w-full bg-cyan-500"}>
+
+                            Create Account
                         </Button>
-                        <Button type="reset" variant="secondary">
-                            Reset
-                        </Button>
+
                     </div>
                 </Form>
             </Card>
