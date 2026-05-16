@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { EditModal } from "@/components/EditModal";
-
+import { DeleteAlert } from "@/components/DeleteAlert";
 import { RiMapPin2Fill } from "react-icons/ri";
 import { SlCalender } from "react-icons/sl";
 import Link from "next/link";
@@ -27,6 +27,7 @@ const DestinationDetailsPage = async({params}) => {
         <div className="max-w-7xl mx-auto">
             
             <EditModal destination={destination}></EditModal>
+            <DeleteAlert></DeleteAlert>
             
              <Image
                 className="w-full h-100 Object-cover"
