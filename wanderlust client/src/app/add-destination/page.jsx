@@ -1,5 +1,3 @@
-
-
 'use client'
 
 import {
@@ -46,7 +44,8 @@ const AddDestinationPage = () => {
             <h1 className="text-2xl font-bold"> Add Destination </h1>
 
             <Card>
-                <form onSubmit={onSubmit} className="p-10 space-y-8 w-3xl ">
+                <form 
+                onSubmit={onSubmit} className="p-10 space-y-8 w-3xl ">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
                         {/* Destination Name */}

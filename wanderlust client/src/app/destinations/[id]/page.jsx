@@ -1,6 +1,7 @@
+
 import Image from "next/image";
 import { FaExternalLinkAlt } from "react-icons/fa";
-
+import { EditModal } from "@/components/EditModal";
 
 import { RiMapPin2Fill } from "react-icons/ri";
 import { SlCalender } from "react-icons/sl";
@@ -24,11 +25,8 @@ const DestinationDetailsPage = async({params}) => {
 
     return (
         <div className="max-w-7xl mx-auto">
-            <div className="flex justify-end">
-                <Button variant="outline" className={"rounded-none mt-5 mb-3 "}>
-                   <BiEdit></BiEdit> Edit
-                </Button>
-            </div>
+            
+            <EditModal></EditModal>
             
              <Image
                 className="w-full h-100 Object-cover"
@@ -85,3 +83,4 @@ const DestinationDetailsPage = async({params}) => {
 };
 
 export default DestinationDetailsPage;
+
