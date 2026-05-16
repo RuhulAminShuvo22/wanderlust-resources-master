@@ -14,12 +14,12 @@ import {
     ListBox,
     Select,
     TextArea,
-        
+
 } from "@heroui/react";
 
-export function EditModal({destination}) {
+export function EditModal({ destination }) {
 
-    const {imageUrl, price, destinationName, duration, departureDate, category, country, description } = destination;
+    const { _id, imageUrl, price, destinationName, duration, departureDate, category, country, description } = destination;
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -28,19 +28,19 @@ export function EditModal({destination}) {
 
         const destination = Object.fromEntries(formData.entries());
 
-        //console.log(destination);
+        console.log(destination);
 
-        // const res = await fetch('http://localhost:5000/destination', {
-        //     method: 'POST',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(destination)
-        // });
+        const res = await fetch(`http://localhost:5000/destination/${_id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(destination)
+        });
 
-        // const data = await res.json();
+         const data = await res.json();
 
-        // console.log(data);
+         console.log(data);
     }
 
     return (
@@ -56,7 +56,7 @@ export function EditModal({destination}) {
                     <Modal.Dialog className="sm:max-w-xl">
                         <Modal.CloseTrigger />
                         <Modal.Header>
-                            
+
                             <Modal.Heading>Edit Destination</Modal.Heading>
 
                         </Modal.Header>
@@ -73,7 +73,7 @@ export function EditModal({destination}) {
                                                 <Label>Destination Name</Label>
 
                                                 <Input
-                                                    
+
                                                     placeholder="Bali Paradise"
                                                     className="rounded-2xl"
                                                 />
@@ -83,9 +83,9 @@ export function EditModal({destination}) {
                                         </div>
 
                                         {/* Country */}
-                                        <TextField 
-                                        defaultValue={country} 
-                                        name="country" isRequired>
+                                        <TextField
+                                            defaultValue={country}
+                                            name="country" isRequired>
                                             <Label>Country</Label>
 
                                             <Input
@@ -151,9 +151,9 @@ export function EditModal({destination}) {
                                         </div>
 
                                         {/* Price */}
-                                        <TextField 
-                                        defaultValue={price}
-                                        name="price" type="number" isRequired>
+                                        <TextField
+                                            defaultValue={price}
+                                            name="price" type="number" isRequired>
                                             <Label>Price (USD)</Label>
 
                                             <Input
@@ -166,9 +166,9 @@ export function EditModal({destination}) {
                                         </TextField>
 
                                         {/* Duration */}
-                                        <TextField 
-                                        defaultValue={duration}
-                                        name="duration" isRequired>
+                                        <TextField
+                                            defaultValue={duration}
+                                            name="duration" isRequired>
                                             <Label>Duration</Label>
 
                                             <Input
@@ -200,9 +200,9 @@ export function EditModal({destination}) {
 
                                         {/* Image URL */}
                                         <div className="md:col-span-2">
-                                            <TextField 
-                                            defaultValue={imageUrl}
-                                            name="imageUrl" isRequired>
+                                            <TextField
+                                                defaultValue={imageUrl}
+                                                name="imageUrl" isRequired>
                                                 <Label>Image URL</Label>
 
                                                 <Input
@@ -217,9 +217,9 @@ export function EditModal({destination}) {
 
                                         {/* Description */}
                                         <div className="md:col-span-2">
-                                            <TextField 
-                                            defaultValue={description}
-                                            name="description" isRequired>
+                                            <TextField
+                                                defaultValue={description}
+                                                name="description" isRequired>
                                                 <Label>Description</Label>
 
                                                 <TextArea
@@ -233,24 +233,15 @@ export function EditModal({destination}) {
                                     </div>
 
                                     {/* Button */}
-                                    <Button
-                                        type="submit"
-                                        variant="outline"
-                                        // isLoading={isPending}
-                                        className="rounded-none w-full bg-cyan-500 text-white"
-                                    >
-                                        Add Destination
-                                    </Button>
+                                    <Modal.Footer>
+                                        
+                                        <Button type="submit" slot="close">Save</Button>
+                                    </Modal.Footer>
                                 </form>
 
                             </Surface>
                         </Modal.Body>
-                        <Modal.Footer>
-                            <Button slot="close" variant="secondary">
-                                Cancel
-                            </Button>
-                            <Button slot="close">Save</Button>
-                        </Modal.Footer>
+
                     </Modal.Dialog>
                 </Modal.Container>
             </Modal.Backdrop>
