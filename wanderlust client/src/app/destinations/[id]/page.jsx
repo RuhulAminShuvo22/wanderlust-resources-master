@@ -26,7 +26,7 @@ const DestinationDetailsPage = async({params}) => {
     return (
         <div className="max-w-7xl mx-auto">
             
-            <EditModal></EditModal>
+            <EditModal destination={destination}></EditModal>
             
              <Image
                 className="w-full h-100 Object-cover"

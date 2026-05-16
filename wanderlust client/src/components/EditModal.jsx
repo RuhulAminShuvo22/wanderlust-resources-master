@@ -17,7 +17,9 @@ import {
         
 } from "@heroui/react";
 
-export function EditModal() {
+export function EditModal({destination}) {
+
+    const {imageUrl, price, destinationName, duration, departureDate, category, country, description } = destination;
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -54,10 +56,8 @@ export function EditModal() {
                     <Modal.Dialog className="sm:max-w-xl">
                         <Modal.CloseTrigger />
                         <Modal.Header>
-                            <Modal.Icon className="bg-accent-soft text-accent-soft-foreground">
-                                <Envelope className="size-5" />
-                            </Modal.Icon>
-                            <Modal.Heading>Edit</Modal.Heading>
+                            
+                            <Modal.Heading>Edit Destination</Modal.Heading>
 
                         </Modal.Header>
                         <Modal.Body className="p-6">
@@ -69,10 +69,11 @@ export function EditModal() {
 
                                         {/* Destination Name */}
                                         <div className="md:col-span-2">
-                                            <TextField name="destinationName" isRequired>
+                                            <TextField defaultValue={destinationName} name="destinationName" isRequired>
                                                 <Label>Destination Name</Label>
 
                                                 <Input
+                                                    
                                                     placeholder="Bali Paradise"
                                                     className="rounded-2xl"
                                                 />
@@ -82,7 +83,9 @@ export function EditModal() {
                                         </div>
 
                                         {/* Country */}
-                                        <TextField name="country" isRequired>
+                                        <TextField 
+                                        defaultValue={country} 
+                                        name="country" isRequired>
                                             <Label>Country</Label>
 
                                             <Input
@@ -96,6 +99,7 @@ export function EditModal() {
                                         {/* Category */}
                                         <div>
                                             <Select
+                                                defaultValue={category}
                                                 name="category"
                                                 isRequired
                                                 className="w-full"
@@ -147,7 +151,9 @@ export function EditModal() {
                                         </div>
 
                                         {/* Price */}
-                                        <TextField name="price" type="number" isRequired>
+                                        <TextField 
+                                        defaultValue={price}
+                                        name="price" type="number" isRequired>
                                             <Label>Price (USD)</Label>
 
                                             <Input
@@ -160,7 +166,9 @@ export function EditModal() {
                                         </TextField>
 
                                         {/* Duration */}
-                                        <TextField name="duration" isRequired>
+                                        <TextField 
+                                        defaultValue={duration}
+                                        name="duration" isRequired>
                                             <Label>Duration</Label>
 
                                             <Input
@@ -174,6 +182,7 @@ export function EditModal() {
                                         {/* Departure Date */}
                                         <div className="md:col-span-2">
                                             <TextField
+                                                defaultValue={departureDate}
                                                 name="departureDate"
                                                 type="date"
                                                 isRequired
@@ -191,7 +200,9 @@ export function EditModal() {
 
                                         {/* Image URL */}
                                         <div className="md:col-span-2">
-                                            <TextField name="imageUrl" isRequired>
+                                            <TextField 
+                                            defaultValue={imageUrl}
+                                            name="imageUrl" isRequired>
                                                 <Label>Image URL</Label>
 
                                                 <Input
@@ -206,7 +217,9 @@ export function EditModal() {
 
                                         {/* Description */}
                                         <div className="md:col-span-2">
-                                            <TextField name="description" isRequired>
+                                            <TextField 
+                                            defaultValue={description}
+                                            name="description" isRequired>
                                                 <Label>Description</Label>
 
                                                 <TextArea
