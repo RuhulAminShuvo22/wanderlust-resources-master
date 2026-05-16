@@ -26,8 +26,10 @@ const DestinationDetailsPage = async({params}) => {
     return (
         <div className="max-w-7xl mx-auto">
             
-            <EditModal destination={destination}></EditModal>
-            <DeleteAlert></DeleteAlert>
+            <div className="flex items-center gap-3 justify-end mt-5 mb-3">
+                <EditModal destination={destination}></EditModal>
+                <DeleteAlert destination={destination}></DeleteAlert>
+            </div>
             
              <Image
                 className="w-full h-100 Object-cover"
