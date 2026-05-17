@@ -77,7 +77,6 @@
 // };
 
 // export default BookingCard;
-
 "use client"
 import { authClient } from "@/lib/auth-client";
 import { Button, Card } from "@heroui/react";
@@ -92,7 +91,6 @@ const BookingCard = ({ destination }) => {
     const { price, _id, destinationName, imageUrl, country } = destination;
 
     const [departureDate, setDepartureDate] = useState(null);
-    //console.log(new Date(departureDate))
 
     const handleBooking = async ()=> {
         // 1. Prevent crash if user is not logged in
@@ -107,6 +105,14 @@ const BookingCard = ({ destination }) => {
             return;
         }
 
+        // Safe conversion for HeroUI DateField state
+        let ISO_DateString = "";
+        if (departureDate && departureDate.year) {
+            ISO_DateString = new Date(departureDate.year, departureDate.month - 1, departureDate.day).toISOString();
+        } else {
+            ISO_DateString = new Date(departureDate).toISOString();
+        }
+
         const bookingData = {
             userID: user.id ,
             userImage: user.image,
@@ -116,17 +122,31 @@ const BookingCard = ({ destination }) => {
             price,
             imageUrl,
             country,
-            departureDate: new Date(departureDate)
-
+            departureDate: ISO_DateString
         }
 
-        console.log(bookingData)
+        try {
+            const res = await fetch("http://localhost:5000/booking", {
+                method: "POST",
+                headers: {
+                    'content-type' : 'application/json'
+                },
+                body: JSON.stringify(bookingData)
+            })
+
+            const data = await res.json();
+            console.log(data);
+
+            if(data.insertedId) {
+                alert("Booking successfully added to MongoDB!");
+            } else {
+                alert("Failed to save booking.");
+            }
+        } catch (error) {
+            console.error("Request Error:", error);
+            alert("Connection error to server.");
+        }
     }
-
-
-
-
-   
 
     return (
         <Card className="rounded-none border mt-5">
@@ -134,18 +154,15 @@ const BookingCard = ({ destination }) => {
             <h2 className="text-3xl font-bold text-cyan-400">${price}</h2>
             <p className="text-sm text-muted">per person</p>
 
-            <DateField onChange={setDepartureDate} className="w-[256px]" name="date">
+            {/* Added value attribute to keep sync with HeroUI core state */}
+            <DateField value={departureDate} onChange={setDepartureDate} className="w-[256px]" name="date">
                 <Label>Departure Date</Label>
                 <DateField.Group>
                     <DateField.Input>{(segment) => <DateField.Segment segment={segment} />}</DateField.Input>
                 </DateField.Group>
             </DateField>
 
-
-
             <Button  onClick={handleBooking} className={"w-full rounded-none bg-cyan-500"}>Book Now</Button>
-
-
 
             {/* Features List */}
             <div className="space-y-2 text-sm text-gray-600 border-t border-gray-100 pt-4">
