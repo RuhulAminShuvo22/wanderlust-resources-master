@@ -9,12 +9,12 @@ const BookingCard = ({ destination }) => {
 
     const { data: session } = authClient.useSession()
     const user = session?.user
-    
+
     const { price, _id, destinationName, imageUrl, country } = destination;
 
     const [departureDate, setDepartureDate] = useState(null);
 
-    const handleBooking = async ()=> {
+    const handleBooking = async () => {
         // 1. Prevent crash if user is not logged in
         if (!user) {
             alert("Please log in first to book a destination.");
@@ -36,7 +36,7 @@ const BookingCard = ({ destination }) => {
         }
 
         const bookingData = {
-            userID: user.id ,
+            userID: user.id,
             userImage: user.image,
             userName: user.name,
             destinationId: _id,
@@ -51,7 +51,7 @@ const BookingCard = ({ destination }) => {
             const res = await fetch("http://localhost:5000/booking", {
                 method: "POST",
                 headers: {
-                    'content-type' : 'application/json'
+                    'content-type': 'application/json'
                 },
                 body: JSON.stringify(bookingData)
             })
@@ -59,7 +59,7 @@ const BookingCard = ({ destination }) => {
             const data = await res.json();
             console.log(data);
 
-            if(data.insertedId) {
+            if (data.insertedId) {
                 alert("Booking successfully added to MongoDB!");
             } else {
                 alert("Failed to save booking.");
@@ -84,7 +84,7 @@ const BookingCard = ({ destination }) => {
                 </DateField.Group>
             </DateField>
 
-            <Button  onClick={handleBooking} className={"w-full rounded-none bg-cyan-500"}>Book Now</Button>
+            <Button onClick={handleBooking} className={"w-full rounded-none bg-cyan-500"}>Book Now</Button>
 
             {/* Features List */}
             <div className="space-y-2 text-sm text-gray-600 border-t border-gray-100 pt-4">
