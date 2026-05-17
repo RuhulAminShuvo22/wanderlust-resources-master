@@ -8,7 +8,7 @@
 //                 <li><link  href={'/'} />Home</li>
 //                 <li><link  href={'/destinations'} />Destinations</li>
 //                 <li><link  href={'/my-bookings'} />My-bookings</li>
-                
+
 //             </ul>
 
 //             <div>
@@ -23,7 +23,7 @@
 //                 <li><link  href={'/profile'} />Profile</li>
 //                 <li><link  href={'/login'} />Login</li>
 //                 <li><link  href={'/signup'} />Sign-Up</li>
-                
+
 //             </ul>
 //         </nav>
 //     );
@@ -32,14 +32,23 @@
 // export default Navbar;
 
 "use client";
-
+import {Avatar, Button} from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, User, X } from "lucide-react";
 import { useState } from "react";
+import { authClient } from "@/lib/auth-client";
+//import { Button } from "@heroui/react";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+
+    const {
+        data: session,
+    } = authClient.useSession()
+
+    const user = session?.user
+    console.log(user)
 
     return (
         <nav className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
@@ -118,23 +127,38 @@ const Navbar = () => {
                             </Link>
                         </li>
 
-                        <li>
-                            <Link
-                                href="/login"
-                                className="hover:text-sky-500 transition-colors"
-                            >
-                                Login
-                            </Link>
-                        </li>
+                        {user ? <>
+                            <li>
+                                <Avatar>
+                                    <Avatar.Image alt="John Doe" src={user?.image} />
+                                    <Avatar.Fallback>{user.name.charAt(0)}</Avatar.Fallback>
+                                </Avatar>
+                            </li>
 
-                        <li>
-                            <Link
-                                href="/signup"
-                                className="bg-sky-500 text-white px-4 py-2 rounded-md hover:bg-sky-600 transition-colors"
-                            >
-                                Sign Up
-                            </Link>
-                        </li>
+                            <li>
+                                 <Button variant="danger" className={"rounded-none"}> Logout </Button>
+                            </li>
+
+                        </> : <>
+                            <li>
+                                <Link
+                                    href="/login"
+                                    className="hover:text-sky-500 transition-colors"
+                                >
+                                    Login
+                                </Link>
+                            </li>
+
+                            <li>
+                                <Link
+                                    href="/signup"
+                                    className="bg-sky-500 text-white px-4 py-2 rounded-md hover:bg-sky-600 transition-colors"
+                                >
+                                    Sign Up
+                                </Link>
+                            </li>
+                        </>}
+
                     </ul>
 
                     {/* Mobile Menu Button */}
