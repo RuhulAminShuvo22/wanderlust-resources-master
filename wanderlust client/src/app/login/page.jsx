@@ -9,6 +9,9 @@ import { User } from "lucide-react";
 import { useRouter } from "next/navigation"; 
 import { toast } from "react-toastify";
 
+import { Separator } from "@heroui/react";
+import { FcGoogle } from "react-icons/fc";
+
 const LoginPage = () => {
     // 2. কম্পোনেন্টের ভেতরে router ডিফাইন করা হলো
     const router = useRouter(); 
@@ -63,6 +66,12 @@ const LoginPage = () => {
         }
     }
 
+    const handleGoogleSignin = async() =>{
+            await authClient.signIn.social({
+                provider: "google"
+            });
+        }
+
     return (
         <div className="max-w-7xl mx-auto">
             <div className="text-center">
@@ -113,6 +122,25 @@ const LoginPage = () => {
                         </Button>
                     </div>
                 </Form>
+
+                <div className="flex flex-col items-center justify-center gap-4 w-full">
+                
+                                    <div className="flex justify-center items-center w-full gap-2">
+                                        <Separator className="flex-grow"></Separator>
+                                        <span className="whitespace-nowrap text-sm text-gray-500">Or sign up with</span>
+                                        <Separator className="flex-grow"></Separator>
+                                    </div>
+                
+                
+                                    <Button 
+                                        onClick={handleGoogleSignin} 
+                                        variant="outline" 
+                                        className="w-full rounded-none flex items-center justify-center gap-2">
+                                        <FcGoogle className="text-xl" />
+                                        <span>Sign in with Google</span>
+                                    </Button>
+                                </div>
+
             </Card>
         </div>
     );
