@@ -20,14 +20,13 @@ const LoginPage = () => {
         const user = Object.fromEntries(formData.entries());
 
         // লোডিং নোটিফিকেশন শুরু
-        const toastId = toast.loading("Creating your account...");
+        const toastId = toast.loading("Login your account...");
 
         try {
-            const { data, error } = await authClient.signUp.email({
+            const { data, error } = await authClient.signIn.email({
                email: user.email,
-               password: user.password,
-               name: user.name,
-               image: user.image
+               password: user.password
+               
             })
             
             console.log({data, error})
@@ -35,7 +34,7 @@ const LoginPage = () => {
             if(data){
                 // সফল হলে লোডিং টোস্ট আপডেট হবে
                 toast.update(toastId, { 
-                    render: "Account created successfully! 🎉", 
+                    render: "Account login successfully! 🎉", 
                     type: "success", 
                     isLoading: false, 
                     autoClose: 3000 
