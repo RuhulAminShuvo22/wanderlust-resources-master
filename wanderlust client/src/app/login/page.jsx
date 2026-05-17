@@ -73,17 +73,6 @@ const LoginPage = () => {
 
             <Card className="border rounded-none">
                 <Form onSubmit={onSubmit} className="flex w-96 flex-col gap-4" >
-                    <TextField isRequired name="name" type="text">
-                        <Label>Name</Label>
-                        <Input placeholder="Enter your name" />
-                        <FieldError />
-                    </TextField>
-
-                    <TextField name="image" type="url">
-                        <Label>Image URL</Label>
-                        <Input placeholder="Image url" />
-                        <FieldError />
-                    </TextField>
 
                     <TextField
                         isRequired
@@ -121,7 +110,7 @@ const LoginPage = () => {
                     
                     <div className="flex justify-center gap-2">
                         <Button type="submit" className={"rounded-none w-full bg-cyan-500"}>
-                            Create Account
+                            Login
                         </Button>
                     </div>
                 </Form>
