@@ -8,30 +8,31 @@ import { SlCalender } from "react-icons/sl";
 import Link from "next/link";
 import { Button } from "@heroui/react";
 import { BiEdit } from "react-icons/bi";
+import BookingCard from "@/components/BookingCard";
 
 
-const DestinationDetailsPage = async({params}) => {
+const DestinationDetailsPage = async ({ params }) => {
 
-    const {id} = await params
-    
+    const { id } = await params
+
     const res = await fetch(`http://localhost:5000/destination/${id}`);
     const destination = await res.json();
     //console.log(destination)
 
-    const {imageUrl, price, destinationName, duration, country, description } = destination;
+    const { imageUrl, price, destinationName, duration, country, description } = destination;
 
 
 
 
     return (
         <div className="max-w-7xl mx-auto">
-            
+
             <div className="flex items-center gap-3 justify-end mt-5 mb-3">
                 <EditModal destination={destination}></EditModal>
                 <DeleteAlert destination={destination}></DeleteAlert>
             </div>
-            
-             <Image
+
+            <Image
                 className="w-full h-100 Object-cover"
                 alt={destinationName}
                 src={imageUrl}
@@ -42,42 +43,48 @@ const DestinationDetailsPage = async({params}) => {
 
             </Image>
 
-            <div className="p-2">
-                            <div className="flex items-center gap-1">
-                                <RiMapPin2Fill />
-                                <span>{country}</span>
-                            </div>
-            
-                            <div className="flex justify-between items-center mt-2">
-                                <div>
-                                    <h2 className="text-xl font-bold">
-                                        {destinationName}
-                                    </h2>
-                                </div>
-            
-                                <div className="flex gap-2 items-center">
-                                    <SlCalender />
-                                    {duration}
-                                </div>
-            
-                                <div className="text-2xl font-bold">
-                                    <h3>${price}</h3>
-                                </div>
-    
-                            </div>
+            <div className="flex justify-between">
 
-                            <div>
-                                <h2 className="mt-10 text-2xl font-bold">OverView</h2>
-                                <p>{description}</p>
+                <div className="p-2">
+                    <div className="flex items-center gap-1">
+                        <RiMapPin2Fill />
+                        <span>{country}</span>
+                    </div>
 
-                                <br />
-
-                                <h2 className="mt-10 text-2xl font-bold">Highlight</h2>
-                                
-                            </div>
-                            
-                            
+                    <div className="flex justify-between items-center mt-2">
+                        <div>
+                            <h2 className="text-xl font-bold">
+                                {destinationName}
+                            </h2>
                         </div>
+
+                        <div className="flex gap-2 items-center">
+                            <SlCalender />
+                            {duration}
+                        </div>
+
+                        {/* <div className="text-2xl font-bold">
+                                    <h3>${price}</h3>
+                                </div> */}
+
+                    </div>
+
+                    <div>
+                        <h2 className="mt-10 text-2xl font-bold">OverView</h2>
+                        <p>{description}</p>
+
+                        <br />
+
+                        <h2 className="mt-10 text-2xl font-bold">Highlight</h2>
+
+                    </div>
+
+
+                </div>
+
+                <BookingCard destination={destination}></BookingCard>
+
+            </div>
 
 
 
