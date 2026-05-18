@@ -5,7 +5,7 @@ import { AlertDialog, Button } from "@heroui/react";
 
 export function BookingCancelAlert({ bookingId }) {
 
-    //console.log("bookingId:",bookingId)
+    
 
     const handleCancelBooking = async () => {
 
