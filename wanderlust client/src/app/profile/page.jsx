@@ -6,7 +6,7 @@ import { Avatar, Card, Chip, Spinner } from '@heroui/react';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
-// আইকন ব্যবহারের জন্য Lucide-react (যা আপনার নববারে অলরেডি ইনস্টল করা আছে)
+// আইকন ব্যবহারের জন্য Lucide-react
 import { User, Mail, Calendar, ShieldCheck, ShieldAlert } from 'lucide-react';
 
 const ProfilePage = () => {
@@ -60,25 +60,23 @@ const ProfilePage = () => {
                             Welcome to your travel profile ✈️
                         </p>
 
-                        {/* অ্যাকাউন্ট ভেরিফিকেশন স্ট্যাটাস চিপ (MongoDB emailVerified ডাটার ওপর ভিত্তি করে) */}
+                        {/* অ্যাকাউন্ট ভেরিফিকেশন স্ট্যাটাস চিপ (HeroUI v3-এর একদম নির্ভুল ইন-লাইন আইকন স্ট্রাকচার) */}
                         <div className='mt-4'>
                             {user?.emailVerified ? (
                                 <Chip
                                     color="success"
                                     variant="flat"
-                                    startContent={<ShieldCheck className="w-4 h-4 mr-1" />}
-                                    className="px-3 py-1 font-medium rounded-full"
+                                    className="px-4 py-1.5 font-semibold rounded-full flex items-center gap-1.5"
                                 >
-                                    Verified Account
+                                    <ShieldCheck className="w-4 h-4 inline" /> Verified Account
                                 </Chip>
                             ) : (
                                 <Chip
                                     color="warning"
                                     variant="flat"
-                                    startContent={<ShieldAlert className="w-4 h-4 mr-1" />}
-                                    className="px-3 py-1 font-medium rounded-full"
+                                    className="px-4 py-1.5 font-semibold rounded-full flex items-center gap-1.5"
                                 >
-                                    Unverified Account
+                                    <ShieldAlert className="w-4 h-4 inline" /> Unverified Account
                                 </Chip>
                             )}
                         </div>
@@ -120,7 +118,7 @@ const ProfilePage = () => {
                             </div>
                         </div>
 
-                        {/* মেম্বারশিপ বা ডেট বক্স (MongoDB ISO Date কে সেফলি ফরম্যাট করার লজিক) */}
+                        {/* মেম্বারশিপ বা ডেট বক্স */}
                         <div className='flex items-center gap-4 bg-gray-50/60 p-4 rounded-2xl border border-gray-100/80 hover:bg-gray-50 transition-colors'>
                             <div className='bg-sky-50 p-3 rounded-xl border border-sky-100'>
                                 <Calendar className='text-sky-500 w-5 h-5' />
