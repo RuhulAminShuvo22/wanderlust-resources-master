@@ -25,16 +25,29 @@ const MyBookingsPage = async () => {
 
             <div>
                 {
-                    bookings.map(booking => 
-                        <div key={booking._id}>
-                            <Image 
+                    bookings.map(booking =>
+                        <div key={booking._id} className="flex gap-5 border p-5 min-w-3xl">
+                            <Image
                                 src={booking.imageUrl}
                                 alt={booking.destinationName}
                                 height={300}
                                 width={300}
-                                >
-
+                            >
                             </Image>
+
+                            <div>
+                                <h1>{booking.destinationName}</h1>
+                                <p>{new Date(booking.departureDate).toLocaleDateString("en-US", {
+                                    year: "numeric", // Fixed: changed from "Numeric" to "numeric"
+                                    month: "long",
+                                    day: "numeric"
+                                })}</p>
+
+                                <p className="text-3xl font-bold text-cyan-500">
+                                    ${booking.price}
+                                </p>
+                            </div>
+
                         </div>)
                 }
             </div>
