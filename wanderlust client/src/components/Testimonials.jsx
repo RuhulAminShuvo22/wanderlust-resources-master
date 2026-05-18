@@ -8,7 +8,7 @@ const Testimonials = () => {
             id: 1,
             name: "Michael Chen",
             country: "Singapore",
-            image: "https://i.ibb.co/8gZ7h1M/man1.jpg",
+            image: "/assets/person1.png",
             review:
                 "The Bali trip was absolutely magical! Every detail was perfectly planned. The resorts were luxurious and the cultural experiences were unforgettable."
         },
@@ -16,7 +16,7 @@ const Testimonials = () => {
             id: 2,
             name: "Sarah Johnson",
             country: "New York, USA",
-            image: "https://i.ibb.co/jr8W0QP/woman1.jpg",
+            image: "/assets/person2.png",
             review:
                 "Swiss Alps adventure exceeded all expectations. The mountain views were breathtaking and our guide was incredibly knowledgeable. Highly recommend!"
         }
@@ -73,7 +73,7 @@ const Testimonials = () => {
                                 <div className="flex-1">
 
                                     <p className="text-gray-700 leading-8 text-lg">
-                                        "{testimonial.review}"
+                                        &quot;{testimonial.review}&quot;
                                     </p>
 
                                     <div className="mt-8">
@@ -92,13 +92,15 @@ const Testimonials = () => {
 
                                 {/* Image */}
                                 <div>
+
                                     <Image
                                         src={testimonial.image}
                                         alt={testimonial.name}
                                         width={180}
                                         height={180}
-                                        className="w-[180px] h-[180px] object-cover"
+                                        className="w-[180px] h-[180px] object-cover rounded-md"
                                     />
+
                                 </div>
 
                             </div>
