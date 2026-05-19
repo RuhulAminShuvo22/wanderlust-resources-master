@@ -13,7 +13,7 @@ const FeaturedDestinations = () => {
 
     useEffect(() => {
 
-        fetch("http://localhost:5000/destination")
+        fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destination`)
             .then(res => res.json())
             .then(data => {
                 setDestinations(data);

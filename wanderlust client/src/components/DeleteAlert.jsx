@@ -8,7 +8,7 @@
 //     const {_id ,destinationName} = destination;
 
 //     const handleDelete = async()=> {
-//         const res = await fetch(`http://localhost:5000/destination/${_id}`,
+//         const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destination/${_id}`,
 //             {
 //                 method: "Delete" ,
 //                 headers: {
@@ -77,7 +77,7 @@ export function DeleteAlert({ destination }) {
       const { data: tokenData } = await authClient.token();
 
       // ৩. হেডারে Bearer Token পাস করে সুরক্ষিত DELETE রিকোয়েস্ট পাঠানো হলো
-      const res = await fetch(`http://localhost:5000/destination/${_id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destination/${_id}`, {
         method: "DELETE", // standard uppercase convention
         headers: {
           "content-type": "application/json",

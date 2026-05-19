@@ -23,7 +23,7 @@
 
 //         console.log(destination);
 
-//         const res = await fetch('http://localhost:5000/destination', {
+//         const res = await fetch('${process.env.NEXT_PUBLIC_SERVER_URL}/destination', {
 //             method: 'POST',
 //             headers: {
 //                 'content-type': 'application/json'
@@ -264,7 +264,7 @@ const AddDestinationPage = () => {
             const { data: tokenData } = await authClient.token();
 
             // ৬. হেডারে Bearer Token পাস করে রিকোয়েস্ট পাঠানো হলো
-            const res = await fetch('http://localhost:5000/destination', {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destination`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
