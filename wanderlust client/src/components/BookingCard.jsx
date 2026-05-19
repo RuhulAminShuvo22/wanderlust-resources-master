@@ -35,6 +35,9 @@ const BookingCard = ({ destination }) => {
             ISO_DateString = new Date(departureDate).toISOString();
         }
 
+        const {data: tokenData} = await authClient.token()
+        //console.log(tokenData)
+
         const bookingData = {
             userID: user.id,
             userImage: user.image,
@@ -48,10 +51,11 @@ const BookingCard = ({ destination }) => {
         }
 
         try {
-            const res = await fetch("http://localhost:5000/booking", {
+            const res = await fetch(`http://localhost:5000/booking`, {
                 method: "POST",
                 headers: {
-                    'content-type': 'application/json'
+                    'content-type': 'application/json',
+                    authorization: `Bearer ${tokenData?.token}`
                 },
                 body: JSON.stringify(bookingData)
             })
