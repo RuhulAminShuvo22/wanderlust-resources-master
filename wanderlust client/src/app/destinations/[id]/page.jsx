@@ -11,13 +11,25 @@ import Link from "next/link";
 import { Button } from "@heroui/react";
 import { BiEdit } from "react-icons/bi";
 import BookingCard from "@/components/BookingCard";
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth";
 
 
 const DestinationDetailsPage = async ({ params }) => {
 
-    const { id } = await params
+    const { id } = await params;
 
-    const res = await fetch(`http://localhost:5000/destination/${id}`, { cache: 'no-store' });
+    const {token} = await auth.api.getToken({
+        headers: await headers()
+    })
+    console.log(token)
+
+    const res = await fetch(`http://localhost:5000/destination/${id}`, {
+        cache: 'no-store',
+        headers: {
+            "authorization": `Bearer ${token}`
+        }
+    });
     const destination = await res.json();
     //console.log(destination)
 

@@ -1,30 +1,39 @@
 import dns from "node:dns";
-dns.setServers(['8.8.8.8' , '8.8.4.4']);
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
 import { betterAuth } from "better-auth";
 import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
+import { jwt } from "better-auth/plugins";
 
 const client = new MongoClient(process.env.MONGODB_URI);
-const db = client.db('wanderlust');
+const db = client.db("wanderlust");
 
 export const auth = betterAuth({
   database: mongodbAdapter(db, {
     // Optional: if you don't provide a client, database transactions won't be enabled.
-    client
+    client,
   }),
 
-    emailAndPassword: { 
-    enabled: true, 
-  }, 
+  emailAndPassword: {
+    enabled: true,
+  },
 
   socialProviders: {
-        google: { 
-            clientId: process.env.GOOGLE_CLIENT_ID , 
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET , 
-        }, 
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     },
-  
-
+  },
+  session: {
+    expiresIn: 30 * 24 * 60 * 60,
+    cookieCache: {
+      enabled: true,
+      strategy: "jwt",
+      //max 30 days
+      maxAge: 30 * 24 * 60 * 60, // Cache cookie lifetime (30 days)
+      refreshCache: true, // Refresh cache cookie on active session
+    },
+  },
+  plugins: [jwt()],
 });
-
